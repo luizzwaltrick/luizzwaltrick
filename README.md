@@ -1,6 +1,6 @@
 # Hi there 👋, I'm Luiz Waltrick
 
-I'm a Backend developer, programming student, and Python enjoyer.
+I'm a Backend developer, programming student, Python student and Linux Lover.
 
 I'm currently learning and exploring new technologies in the world of backend development.
 
