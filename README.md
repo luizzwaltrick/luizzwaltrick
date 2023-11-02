@@ -2,7 +2,7 @@
 
 Cybersecurity Analyst, programming student, Python enjoyer and Linux Lover.
 
-I'm currently learning and exploring new technologies in the world of Backend Development and Cybersecurity.
+I'm currently learning and exploring new technologies in the world of Python and Cybersecurity.
 
 # You can find me on:
 
