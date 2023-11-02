@@ -30,6 +30,7 @@ I'm currently learning and exploring new technologies in the world of Python and
 **Confident / Daily Usage**
 - ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=flat&logo=visual-studio-code&logoColor=white&link=https://code.visualstudio.com/)
 - ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white&link=https://www.python.org/)
+- ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black&link=https://www.linux.org/)
 
 ## My projects
 
