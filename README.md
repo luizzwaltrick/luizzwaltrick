@@ -1,8 +1,8 @@
 # Hi there 👋, I'm Luiz Waltrick
 
-I'm a Backend developer, programming student, Python enjoyer and Linux Lover.
+Cybersecurity Analyst, programming student, Python enjoyer and Linux Lover.
 
-I'm currently learning and exploring new technologies in the world of backend development.
+I'm currently learning and exploring new technologies in the world of Backend Development and Cybersecurity.
 
 # You can find me on:
 
