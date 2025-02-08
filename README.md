@@ -1,6 +1,6 @@
 # Hi there 👋, I'm Luiz Waltrick
 
-Systems Analysis and Development student with emphazis in automation.
+Systems Analysis and Development student passionate about automation, problem-solving, and building efficient systems.
 
 # You can find me on:
 
