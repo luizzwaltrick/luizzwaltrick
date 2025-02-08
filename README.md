@@ -1,12 +1,9 @@
 # Hi there 👋, I'm Luiz Waltrick
 
-Cybersecurity Analyst, programming student, Python enjoyer and Linux Lover.
-
-I'm currently learning and exploring new technologies in the world of Python and Cybersecurity.
+Systems Analysis and Development student with emphazis in automation.
 
 # You can find me on:
 
-- [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=flat&logo=instagram&logoColor=white)](https://www.instagram.com/luizz.waltrick/)
 - [![Codewars](https://img.shields.io/badge/Codewars-AD2C27?style=flat&logo=codewars&logoColor=white)](https://www.codewars.com/users/LuizzWaltrick)
 
 ## <span style="background-color:black; color:white;">Skills and Stats</span>
