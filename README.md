@@ -1,6 +1,6 @@
 # Hi there 👋, I'm Luiz Waltrick
 
-Systems Analysis and Development student passionate about automation, problem-solving, and building efficient systems.
+Mid-Level AI Developer, student and passionate about all Tech-Related.
 
 # You can find me on:
 
