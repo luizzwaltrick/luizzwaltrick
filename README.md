@@ -1,6 +1,6 @@
 # Hi there 👋, I'm Luiz Waltrick
 
-Software Developer, student and passionate about all Tech-Related.
+Data Engineer, student and passionate about all Tech-Related.
 
 # You can find me on:
 
