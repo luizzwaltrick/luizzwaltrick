@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Luiz Waltrick · Dados, BI & Desenvolvimento</title>
+  <meta name="description" content="Portfólio de Luiz Waltrick — engenharia de dados, dashboards Power BI, desenvolvimento, DevOps e sites.">
+  <meta property="og:title" content="Luiz Waltrick · Dados, BI & Desenvolvimento">
+  <meta property="og:description" content="Dashboards Power BI, pipelines de dados em Python, DevOps e sites.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0b1020">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b1020'/%3E%3Crect x='7' y='17' width='4' height='8' rx='1' fill='%2338bdf8'/%3E%3Crect x='14' y='11' width='4' height='14' rx='1' fill='%23a78bfa'/%3E%3Crect x='21' y='7' width='4' height='18' rx='1' fill='%2334d399'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="nav" id="top">
+    <div class="container nav__inner">
+      <a href="#top" class="nav__brand"><span class="nav__logo" aria-hidden="true"></span>luiz<b>waltrick</b></a>
+      <button class="nav__toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span>
+      </button>
+      <nav id="nav-links" class="nav__links">
+        <a href="#servicos">Serviços</a>
+        <a href="#bis">BIs</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#experiencia">Experiência</a>
+        <a href="#stack">Stack</a>
+        <a href="#contato" class="btn btn--small">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__grid-bg" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <div class="hero__text reveal">
+          <p class="eyebrow mono"><span class="dot"></span> disponível para projetos</p>
+          <h1><span data-bind="name"></span><br><span class="grad" data-bind="role"></span></h1>
+          <p class="hero__lead" data-bind="headline"></p>
+          <div class="hero__cta">
+            <a href="#bis" class="btn">Ver dashboards</a>
+            <a href="#contato" class="btn btn--ghost">Falar comigo</a>
+          </div>
+          <ul class="hero__stats" id="hero-stats"></ul>
+        </div>
+        <div class="hero__visual reveal" aria-hidden="true">
+          <div class="code-card">
+            <div class="code-card__bar"><i></i><i></i><i></i><span class="mono">pipeline.py</span></div>
+<pre class="mono"><code><span class="k">import</span> pandas <span class="k">as</span> pd
+
+df = (
+    pd.read_sql(<span class="s">"vendas"</span>, conn)
+      .pipe(validar_schema)
+      .pipe(limpar_nulos)
+      .assign(receita=<span class="k">lambda</span> d: d.qtd * d.preco)
+)
+
+publicar_powerbi(df, dataset=<span class="s">"Torre de Controle"</span>)
+<span class="c"># ✔ 128.402 linhas validadas</span></code></pre>
+          </div>
+          <div class="mini-dash">
+            <div class="mini-dash__kpi"><small>Receita</small><strong>R$ 2,4M</strong><em class="up">▲ 12%</em></div>
+            <div class="mini-dash__kpi"><small>ROAS</small><strong>4,7x</strong><em class="up">▲ 0,6</em></div>
+            <div class="mini-dash__chart" id="hero-chart"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section class="section" id="sobre">
+      <div class="container about">
+        <div class="section__head reveal">
+          <p class="eyebrow mono">// sobre</p>
+          <h2>Do dado bruto à decisão</h2>
+        </div>
+        <div class="about__text reveal" id="about-text"></div>
+      </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section class="section section--alt" id="servicos">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow mono">// serviços</p>
+          <h2>O que eu faço</h2>
+          <p class="section__sub">Foco principal em dados e desenvolvimento — e o que for preciso em volta para a solução funcionar de ponta a ponta.</p>
+        </div>
+        <div class="grid grid--3" id="services"></div>
+      </div>
+    </section>
+
+    <!-- BIs -->
+    <section class="section" id="bis">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow mono">// dashboards</p>
+          <h2>BIs em destaque</h2>
+          <p class="section__sub">Painéis Power BI com visuais personalizados, modelagem cuidadosa e foco em quem vai tomar a decisão. Dados exibidos são ilustrativos.</p>
+        </div>
+        <div class="filters reveal" id="bi-filters" role="tablist" aria-label="Filtrar dashboards"></div>
+        <div class="dash-list" id="dashboards"></div>
+      </div>
+    </section>
+
+    <!-- PROJETOS -->
+    <section class="section section--alt" id="projetos">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow mono">// projetos</p>
+          <h2>Dev, DevOps & sites</h2>
+        </div>
+        <div class="grid grid--2" id="projects"></div>
+      </div>
+    </section>
+
+    <!-- EXPERIÊNCIA -->
+    <section class="section" id="experiencia">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow mono">// experiência</p>
+          <h2>Trajetória</h2>
+        </div>
+        <ol class="timeline" id="experience"></ol>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section class="section section--alt" id="stack">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow mono">// stack</p>
+          <h2>Ferramentas do dia a dia</h2>
+        </div>
+        <div class="grid grid--4" id="stack-list"></div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="section contact" id="contato">
+      <div class="container contact__inner reveal">
+        <p class="eyebrow mono">// contato</p>
+        <h2>Vamos transformar seus dados em resultado?</h2>
+        <p class="section__sub">Projetos de BI, engenharia de dados, automações, DevOps ou sites. Me chama que a gente conversa.</p>
+        <div class="contact__links" id="contact-links"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <span id="year"></span> Luiz Waltrick</span>
+      <a href="#top" class="mono">voltar ao topo ↑</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
