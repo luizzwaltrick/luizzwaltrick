@@ -10,7 +10,7 @@ window.PORTFOLIO = {
     headline: "Construo o caminho completo do dado — da ingestão à visualização final — com pipelines em Python e Airflow e dashboards Power BI que viram decisão.",
     location: "Itajaí, SC · presencial, híbrido ou remoto",
     email: "", // opcional: e-mail profissional de contato
-    whatsapp: "", // TODO: número com DDI e DDD, só dígitos. Ex.: "5547999999999"
+    whatsapp: "5547991787079", // DDI + DDD + número, só dígitos
     whatsappMessage: "Olá, Aldory! Vi seu portfólio e quero conversar sobre um projeto.",
     linkedin: "https://www.linkedin.com/in/luizzwaltrick/",
     github: "https://github.com/luizzwaltrick",
