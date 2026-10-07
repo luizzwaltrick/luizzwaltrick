@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Luiz Waltrick · Dados, BI & Desenvolvimento</title>
-  <meta name="description" content="Portfólio de Luiz Waltrick — engenharia de dados, dashboards Power BI, desenvolvimento, DevOps e sites.">
-  <meta property="og:title" content="Luiz Waltrick · Dados, BI & Desenvolvimento">
-  <meta property="og:description" content="Dashboards Power BI, pipelines de dados em Python, DevOps e sites.">
+  <title>Aldory Waltrick · Dados, BI & Engenharia</title>
+  <meta name="description" content="Portfólio de Aldory Waltrick — análise e engenharia de dados, dashboards Power BI, DevOps, IA generativa e sites.">
+  <meta property="og:title" content="Aldory Waltrick · Dados, BI & Engenharia">
+  <meta property="og:description" content="Dashboards Power BI, pipelines em Python e Airflow, DevOps, IA generativa e sites.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#0b1020">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b1020'/%3E%3Crect x='7' y='17' width='4' height='8' rx='1' fill='%2338bdf8'/%3E%3Crect x='14' y='11' width='4' height='14' rx='1' fill='%23a78bfa'/%3E%3Crect x='21' y='7' width='4' height='18' rx='1' fill='%2334d399'/%3E%3C/svg%3E">
@@ -18,7 +18,7 @@
 <body>
   <header class="nav" id="top">
     <div class="container nav__inner">
-      <a href="#top" class="nav__brand"><span class="nav__logo" aria-hidden="true"></span>luiz<b>waltrick</b></a>
+      <a href="#top" class="nav__brand"><span class="nav__logo" aria-hidden="true"></span>aldory<b>waltrick</b></a>
       <button class="nav__toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-links">
         <span></span><span></span>
       </button>
@@ -39,7 +39,7 @@
       <div class="hero__grid-bg" aria-hidden="true"></div>
       <div class="container hero__inner">
         <div class="hero__text reveal">
-          <p class="eyebrow mono"><span class="dot"></span> disponível para projetos</p>
+          <p class="eyebrow mono"><span class="dot"></span><span>aberto a oportunidades · <span data-bind="location"></span></span></p>
           <h1><span data-bind="name"></span><br><span class="grad" data-bind="role"></span></h1>
           <p class="hero__lead" data-bind="headline"></p>
           <div class="hero__cta">
@@ -50,18 +50,20 @@
         </div>
         <div class="hero__visual reveal" aria-hidden="true">
           <div class="code-card">
-            <div class="code-card__bar"><i></i><i></i><i></i><span class="mono">pipeline.py</span></div>
-<pre class="mono"><code><span class="k">import</span> pandas <span class="k">as</span> pd
+            <div class="code-card__bar"><i></i><i></i><i></i><span class="mono">dags/pipeline_logistica.py</span></div>
+<pre class="mono"><code><span class="k">from</span> airflow.decorators <span class="k">import</span> dag, task
 
-df = (
-    pd.read_sql(<span class="s">"vendas"</span>, conn)
-      .pipe(validar_schema)
-      .pipe(limpar_nulos)
-      .assign(receita=<span class="k">lambda</span> d: d.qtd * d.preco)
-)
+<span class="d">@dag</span>(schedule=<span class="s">"@hourly"</span>, catchup=<span class="k">False</span>)
+<span class="k">def</span> <span class="f">pipeline_logistica</span>():
+    <span class="d">@task</span>
+    <span class="k">def</span> <span class="f">extrair</span>(): <span class="k">return</span> api.get(<span class="s">"/embarques"</span>)
+    <span class="d">@task</span>
+    <span class="k">def</span> <span class="f">validar</span>(df): <span class="k">return</span> checar_schema(df)
+    <span class="d">@task</span>
+    <span class="k">def</span> <span class="f">carregar</span>(df): df.to_sql(<span class="s">"fato_embarques"</span>, pg)
 
-publicar_powerbi(df, dataset=<span class="s">"Torre de Controle"</span>)
-<span class="c"># ✔ 128.402 linhas validadas</span></code></pre>
+    carregar(validar(extrair()))
+<span class="c"># ✔ 360.000+ registros processados</span></code></pre>
           </div>
           <div class="mini-dash">
             <div class="mini-dash__kpi"><small>Receita</small><strong>R$ 2,4M</strong><em class="up">▲ 12%</em></div>
@@ -113,9 +115,9 @@ publicar_powerbi(df, dataset=<span class="s">"Torre de Controle"</span>)
       <div class="container">
         <div class="section__head reveal">
           <p class="eyebrow mono">// projetos</p>
-          <h2>Dev, DevOps & sites</h2>
+          <h2>Projetos & entregas</h2>
         </div>
-        <div class="grid grid--2" id="projects"></div>
+        <div class="grid grid--3" id="projects"></div>
       </div>
     </section>
 
@@ -154,7 +156,7 @@ publicar_powerbi(df, dataset=<span class="s">"Torre de Controle"</span>)
 
   <footer class="footer">
     <div class="container footer__inner">
-      <span>© <span id="year"></span> Luiz Waltrick</span>
+      <span>© <span id="year"></span> <span data-bind="name"></span></span>
       <a href="#top" class="mono">voltar ao topo ↑</a>
     </div>
   </footer>

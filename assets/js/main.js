@@ -14,6 +14,7 @@
     chart: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
     db: '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>',
     check: '<path d="M9 12l2 2 4-4"/><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/>',
+    spark: '<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/>',
     code: '<path d="M8 6l-6 6 6 6M16 6l6 6-6 6M14 4l-4 16"/>',
     server: '<rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01"/>',
     globe: '<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/>',
@@ -122,12 +123,22 @@
     </article>`).join("");
 
   /* ---------- Experiência ---------- */
-  $("#experience").innerHTML = data.experience.map((x) => `
+  $("#experience").innerHTML = data.experience.map((c) => `
     <li class="timeline__item reveal">
-      <span class="timeline__period mono">${esc(x.period)}</span>
-      <h3>${esc(x.role)} <span>· ${esc(x.company)}</span></h3>
-      <p>${esc(x.text)}</p>
-      ${tags(x.tags)}
+      <h3 class="timeline__company">${esc(c.company)}</h3>
+      <span class="timeline__meta">${esc(c.meta)}</span>
+      <div class="timeline__roles">
+        ${c.roles.map((r) => `
+          <div class="role">
+            <div class="role__head">
+              <h4>${esc(r.role)}</h4>
+              ${r.period ? `<span class="mono">${esc(r.period)}</span>` : ""}
+            </div>
+            <p>${esc(r.text)}</p>
+            ${r.bullets.length ? `<ul class="role__bullets">${r.bullets.map((b) => `<li>${esc(b)}</li>`).join("")}</ul>` : ""}
+            ${r.tags.length ? tags(r.tags) : ""}
+          </div>`).join("")}
+      </div>
     </li>`).join("");
 
   /* ---------- Stack ---------- */
@@ -152,6 +163,7 @@
     </a>`).join("");
 
   $("#year").textContent = new Date().getFullYear();
+  document.title = `${p.name} · ${p.role}`;
 
   /* ---------- Menu mobile ---------- */
   const toggle = $(".nav__toggle");
