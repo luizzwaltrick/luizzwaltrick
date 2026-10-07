@@ -6,9 +6,12 @@ window.PORTFOLIO = {
   profile: {
     name: "Aldory Waltrick",
     role: "Dados, BI & Engenharia",
+    rotating: ["Engenharia de Dados", "Business Intelligence", "Power BI & SQL", "DevOps & Cloud", "IA Generativa"],
     headline: "Construo o caminho completo do dado — da ingestão à visualização final — com pipelines em Python e Airflow e dashboards Power BI que viram decisão.",
     location: "Itajaí, SC · presencial, híbrido ou remoto",
     email: "", // opcional: e-mail profissional de contato
+    whatsapp: "", // TODO: número com DDI e DDD, só dígitos. Ex.: "5547999999999"
+    whatsappMessage: "Olá, Aldory! Vi seu portfólio e quero conversar sobre um projeto.",
     linkedin: "https://www.linkedin.com/in/luizzwaltrick/",
     github: "https://github.com/luizzwaltrick",
     codewars: "https://www.codewars.com/users/LuizzWaltrick",
@@ -19,9 +22,9 @@ window.PORTFOLIO = {
       "Além de dados, tenho bagagem em DevOps e desenvolvimento: esteiras de CI/CD, infraestrutura em nuvem, automações, crawlers e soluções de IA generativa com busca vetorial (RAG)."
     ],
     stats: [
-      { value: "360k+", label: "registros em pipelines" },
-      { value: "400h/mês", label: "economizadas com automação" },
-      { value: "−99%", label: "no deploy: 30 min → 20 s" }
+      { to: 360, prefix: "", suffix: "k+", label: "registros em pipelines" },
+      { to: 400, prefix: "", suffix: "h/mês", label: "economizadas com automação" },
+      { to: 99, prefix: "−", suffix: "%", label: "no deploy: 30 min → 20 s" }
     ]
   },
 
@@ -72,6 +75,7 @@ window.PORTFOLIO = {
    */
   dashboards: [
     {
+      id: "dre",
       title: "DRE Unificado",
       category: "Financeiro",
       description: "Demonstrativo de resultado consolidado de toda a empresa a partir de queries complexas em SQL Server, com validação das bases antes da entrega.",
@@ -79,13 +83,27 @@ window.PORTFOLIO = {
       tools: ["Power BI", "SQL Server", "DAX"],
       image: "",
       link: "",
+      accent: "#34d399",
       preview: {
-        accent: "#34d399",
-        kpis: [["Receita líq.", "R$ 4,1M"], ["EBITDA", "18,6%"], ["Lucro", "R$ 512k"]],
+        kpis: [["Receita líq.", 4.1, "R$ ", "M"], ["EBITDA", 18.6, "", "%"], ["Lucro", 512, "R$ ", "k"]],
         bars: [60, 58, 64, 70, 68, 75, 72, 79, 84, 81, 88, 94]
+      },
+      full: {
+        filter: { label: "Empresa", options: ["Consolidado", "Matriz", "Filial SC", "Filial SP"] },
+        kpis: [
+          { label: "Receita líquida", base: 49e6, fmt: "brl", agg: "sum" },
+          { label: "Margem EBITDA", base: 18.6, fmt: "pct", agg: "avg" },
+          { label: "Lucro líquido", base: 6.1e6, fmt: "brl", agg: "sum" },
+          { label: "Despesas operacionais", base: 31e6, fmt: "brl", agg: "sum", lowerIsBetter: true }
+        ],
+        trend: { title: "Receita líquida vs. orçado", base: 4.1e6, fmt: "brl", target: "Orçado" },
+        breakdown: { title: "Despesas por centro de custo", fmt: "brl", base: 2.6e6, items: ["Operações", "Pessoal", "Comercial", "Administrativo", "TI", "Financeiro"] },
+        share: { title: "Receita por linha de negócio", items: ["Importação", "Exportação", "Armazenagem"] },
+        table: { title: "DRE resumido", fmt: "brl", base: 9e6, cols: ["Conta", "Realizado", "Orçado", "Var."], items: ["Receita bruta", "Deduções", "Receita líquida", "Custo dos serviços", "Lucro bruto", "Despesas operacionais", "EBITDA"] }
       }
     },
     {
+      id: "torre",
       title: "Torre de Controle",
       category: "Logística",
       description: "Visão central da operação logística: embarques, prazos e SLA com semáforos, tendência diária e drill-down, usando visuais personalizados.",
@@ -93,13 +111,27 @@ window.PORTFOLIO = {
       tools: ["Power BI", "pbiviz", "Python", "SQL"],
       image: "",
       link: "",
+      accent: "#38bdf8",
       preview: {
-        accent: "#38bdf8",
-        kpis: [["OTIF", "96,4%"], ["Embarques", "1,2k"], ["SLA", "98,1%"]],
+        kpis: [["OTIF", 96.4, "", "%"], ["Embarques", 1.2, "", "k"], ["SLA", 98.1, "", "%"]],
         bars: [42, 55, 48, 61, 70, 66, 74, 80, 77, 85, 90, 88]
+      },
+      full: {
+        filter: { label: "Porto", options: ["Todos", "Itajaí", "Navegantes", "Paranaguá", "Santos"] },
+        kpis: [
+          { label: "Embarques", base: 14200, fmt: "int", agg: "sum" },
+          { label: "OTIF", base: 96.4, fmt: "pct", agg: "avg" },
+          { label: "SLA cumprido", base: 98.1, fmt: "pct", agg: "avg" },
+          { label: "Lead time médio", base: 4.2, fmt: "dias", agg: "avg", lowerIsBetter: true }
+        ],
+        trend: { title: "Embarques por mês vs. capacidade", base: 1180, fmt: "int", target: "Capacidade" },
+        breakdown: { title: "Embarques por armador", fmt: "int", base: 900, items: ["Armador A", "Armador B", "Armador C", "Armador D", "Armador E", "Armador F"] },
+        share: { title: "Embarques por modal", items: ["Marítimo", "Rodoviário", "Aéreo"] },
+        table: { title: "Rotas com maior volume", fmt: "int", base: 1400, cols: ["Rota", "Realizado", "Previsto", "Var."], items: ["Itajaí → Xangai", "Itajaí → Roterdã", "Navegantes → Houston", "Santos → Hamburgo", "Paranaguá → Busan", "Itajaí → Valência"] }
       }
     },
     {
+      id: "comercial",
       title: "Comercial & RH",
       category: "Comercial",
       description: "Painéis das áreas Comercial e de RH com metas, evolução e indicadores por time, todos seguindo o mesmo tema visual para padronizar a experiência.",
@@ -107,13 +139,27 @@ window.PORTFOLIO = {
       tools: ["Power BI", "SQL Server", "Python"],
       image: "",
       link: "",
+      accent: "#fbbf24",
       preview: {
-        accent: "#fbbf24",
-        kpis: [["Faturamento", "R$ 2,4M"], ["Meta", "92%"], ["Headcount", "148"]],
+        kpis: [["Faturamento", 2.4, "R$ ", "M"], ["Meta", 92, "", "%"], ["Headcount", 148, "", ""]],
         bars: [30, 46, 38, 52, 49, 63, 58, 71, 69, 64, 78, 83]
+      },
+      full: {
+        filter: { label: "Time", options: ["Todos", "Inside Sales", "Key Accounts", "Canais"] },
+        kpis: [
+          { label: "Faturamento", base: 28.8e6, fmt: "brl", agg: "sum" },
+          { label: "Meta atingida", base: 92, fmt: "pct", agg: "avg" },
+          { label: "Ticket médio", base: 18400, fmt: "brl", agg: "avg" },
+          { label: "Turnover", base: 2.1, fmt: "pct", agg: "avg", lowerIsBetter: true }
+        ],
+        trend: { title: "Faturamento vs. meta", base: 2.4e6, fmt: "brl", target: "Meta" },
+        breakdown: { title: "Faturamento por vendedor", fmt: "brl", base: 1.9e6, items: ["Vendedor 01", "Vendedor 02", "Vendedor 03", "Vendedor 04", "Vendedor 05", "Vendedor 06"] },
+        share: { title: "Faturamento por segmento", items: ["Indústria", "Varejo", "Serviços"] },
+        table: { title: "Top clientes", fmt: "brl", base: 900e3, cols: ["Cliente", "Realizado", "Meta", "Var."], items: ["Cliente Alfa", "Cliente Beta", "Cliente Gama", "Cliente Delta", "Cliente Épsilon", "Cliente Zeta"] }
       }
     },
     {
+      id: "midia",
       title: "Mídia Paga",
       category: "Marketing",
       description: "Performance de campanhas por canal com ROAS, CPA, CTR e pacing de verba, com limiares de cor que mostram na hora o que precisa de atenção.",
@@ -121,10 +167,23 @@ window.PORTFOLIO = {
       tools: ["Power BI", "pbiviz", "DAX"],
       image: "",
       link: "",
+      accent: "#a78bfa",
       preview: {
-        accent: "#a78bfa",
-        kpis: [["ROAS", "4,7x"], ["CPA", "R$ 38"], ["CTR", "2,9%"]],
+        kpis: [["ROAS", 4.7, "", "x"], ["CPA", 38, "R$ ", ""], ["CTR", 2.9, "", "%"]],
         bars: [36, 44, 41, 55, 52, 60, 66, 63, 72, 70, 79, 86]
+      },
+      full: {
+        filter: { label: "Canal", options: ["Todos", "Google Ads", "Meta Ads", "LinkedIn Ads"] },
+        kpis: [
+          { label: "Investimento", base: 1.32e6, fmt: "brl", agg: "sum" },
+          { label: "ROAS", base: 4.7, fmt: "x", agg: "avg" },
+          { label: "CPA", base: 38, fmt: "brl", agg: "avg", lowerIsBetter: true },
+          { label: "CTR", base: 2.9, fmt: "pct", agg: "avg" }
+        ],
+        trend: { title: "Investimento vs. planejado", base: 110e3, fmt: "brl", target: "Planejado" },
+        breakdown: { title: "Investimento por campanha", fmt: "brl", base: 90e3, items: ["Institucional", "Remarketing", "Lançamento", "Black Friday", "Leads B2B", "Always-on"] },
+        share: { title: "Investimento por objetivo", items: ["Conversão", "Tráfego", "Alcance"] },
+        table: { title: "Campanhas", fmt: "brl", base: 120e3, cols: ["Campanha", "Investido", "Planejado", "Pacing"], items: ["Institucional", "Remarketing", "Lançamento", "Black Friday", "Leads B2B", "Always-on"] }
       }
     }
   ],

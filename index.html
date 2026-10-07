@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
   <header class="nav" id="top">
     <div class="container nav__inner">
       <a href="#top" class="nav__brand"><span class="nav__logo" aria-hidden="true"></span>aldory<b>waltrick</b></a>
@@ -36,22 +37,27 @@
   <main>
     <!-- HERO -->
     <section class="hero">
+      <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
       <div class="hero__grid-bg" aria-hidden="true"></div>
+      <div class="hero__orb hero__orb--a" aria-hidden="true"></div>
+      <div class="hero__orb hero__orb--b" aria-hidden="true"></div>
       <div class="container hero__inner">
         <div class="hero__text reveal">
           <p class="eyebrow mono"><span class="dot"></span><span>aberto a oportunidades · <span data-bind="location"></span></span></p>
-          <h1><span data-bind="name"></span><br><span class="grad" data-bind="role"></span></h1>
+          <h1><span class="split" data-bind="name"></span><br><span class="grad grad--anim" data-bind="role"></span></h1>
+          <p class="hero__typed mono" aria-live="polite"><span class="hero__prompt">$</span> <span id="typed"></span><span class="caret" aria-hidden="true"></span></p>
           <p class="hero__lead" data-bind="headline"></p>
           <div class="hero__cta">
             <a href="#bis" class="btn">Ver dashboards</a>
-            <a href="#contato" class="btn btn--ghost">Falar comigo</a>
+            <a href="#contato" class="btn btn--ghost" id="hero-contact">Falar comigo</a>
+            <a href="#" class="btn btn--ghost btn--icon" id="hero-linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 2a2 2 0 110 4 2 2 0 010-4z"/></svg></a>
           </div>
           <ul class="hero__stats" id="hero-stats"></ul>
         </div>
         <div class="hero__visual reveal" aria-hidden="true">
           <div class="code-card">
             <div class="code-card__bar"><i></i><i></i><i></i><span class="mono">dags/pipeline_logistica.py</span></div>
-<pre class="mono"><code><span class="k">from</span> airflow.decorators <span class="k">import</span> dag, task
+<pre class="mono"><code id="hero-code"><span class="k">from</span> airflow.decorators <span class="k">import</span> dag, task
 
 <span class="d">@dag</span>(schedule=<span class="s">"@hourly"</span>, catchup=<span class="k">False</span>)
 <span class="k">def</span> <span class="f">pipeline_logistica</span>():
@@ -73,6 +79,8 @@
         </div>
       </div>
     </section>
+
+    <div class="marquee" id="marquee" aria-hidden="true"></div>
 
     <!-- SOBRE -->
     <section class="section" id="sobre">
@@ -103,7 +111,7 @@
         <div class="section__head reveal">
           <p class="eyebrow mono">// dashboards</p>
           <h2>BIs em destaque</h2>
-          <p class="section__sub">Painéis Power BI com visuais personalizados, modelagem cuidadosa e foco em quem vai tomar a decisão. Dados exibidos são ilustrativos.</p>
+          <p class="section__sub">Passe o mouse sobre um painel para ver a apresentação e clique para abrir o BI completo — com filtros, cross-filter, tooltips e exportação. Todos os números são fictícios.</p>
         </div>
         <div class="filters reveal" id="bi-filters" role="tablist" aria-label="Filtrar dashboards"></div>
         <div class="dash-list" id="dashboards"></div>
@@ -161,7 +169,10 @@
     </div>
   </footer>
 
+  <div class="fab-wrap" id="fab"></div>
+
   <script src="assets/js/data.js"></script>
+  <script src="assets/js/bi.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>
